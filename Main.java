@@ -2,11 +2,31 @@ import java.util.Locale;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Email obj1 = new Email("Lakshmanan", "P");
-        obj1.setAlternateemail("lakshmanoni1234@gmail.com");
+        Scanner koomar = new Scanner(System.in);
+
+        // Enter the worker's first name
+        System.out.print("Enter your first name: ");
+        String firstName = koomar.nextLine();//nextline takes string as input
+
+        // Enter the worker's last name
+        System.out.print("Enter your last name: ");
+        String lastName = koomar.nextLine();
+
+        // Create an Email object with first and last names
+        Email obj1 = new Email(firstName, lastName);
+
+        /* Enter the worker's alternate email address with @ in it
+        otherwise it returns invalid format and prints null in the
+        ALTERNATE EMAIL when the printinfo() method is called */
+
+        System.out.print("Enter an alternate email address: ");
+        String alternateEmail = koomar.nextLine();
+        obj1.setAlternateemail(alternateEmail);
+
         // obj1.setChangepassword(""); //Use this to set a new password and print it
         // obj1.getBoxCapacity(); //Use this to set a new mail box capacity
         //System.out.println("Alternate Email is " +obj1.getAlternateemail());
+
         obj1.printinfo(); //calling the printinfo method to display the worker's details
     }
 }
@@ -53,8 +73,8 @@ class Email {
         System.out.println("New worker: " + firstname + " " + lastname + "\nSELECT YOUR DEPARTMENT\n1 Manufacturing\n2 Production\n3 Sales\n4 Inspection\n5 None");
 
         /* Taking user input for desired department and using switch case to display it */
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        Scanner bupd = new Scanner(System.in);
+        int choice = bupd.nextInt();
         switch (choice) {
             case 1:
                 return "Manufacturing";
@@ -88,8 +108,12 @@ class Email {
     public void setBoxCapacity(int capacity){ // Set method to change mail box capacity
         this.boxCapacity = capacity;
     }
-    public void setAlternateemail(String altemail){ // Set method to have a alternate email
-        this.alternateEmail = altemail;
+    public void setAlternateemail(String altemail) {// Set method to have a alternate email
+        if (altemail.contains("@")) { // The entered alternate email should consist of @ in it.
+            this.alternateEmail = altemail;
+        } else {
+            System.out.println("Invalid format");
+        }
     }
     public void setChangepassword(String passwd){ //Set method to change the password
         this.password = passwd;
