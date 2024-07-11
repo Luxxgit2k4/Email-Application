@@ -5,7 +5,7 @@
 
 This Java project is a simple email generation system for a company. It creates an email for a new worker based on their first name, last name, and chosen department.
 
-  * Generate an email with firstname.lastname@department.company.com with the worker's username given as an input.
+  * Generate an email in the format (firstname.lastname@department.company.com) with the worker's username given as an input.
   * Determine the department of the worker and exit the program if it is none.
   * Enter the worker's alternate email address
 
