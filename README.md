@@ -8,7 +8,8 @@ This Java project is a simple email generation system for a company. It creates 
   * Generate an email with firstname.lastname@department.company.com with the worker's username given as an input.
   * Determine the department of the worker and exit the program if it is none.
   * Enter the worker's alternate email address
-    Note: The alternate email should consist of the symbol '@'.
+
+    ### Note: The alternate email should consist of the symbol '@'.
   * Generate a random password
   * Have get and set methods to change and display the alternate email, password and mailbox capacity if necessary
   * At last print the workers details with their name, email address , alternate email and mailbox capacity.*
@@ -45,3 +46,7 @@ java Main
 ## Contributing
 
 Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
+
+## License
+
+This project is open-source and available under the [MIT License](https://opensource.org/license/mit)
