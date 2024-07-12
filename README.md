@@ -57,7 +57,8 @@ java Main
 - Enter the worker's alternate email address
   
 
-  #### NOTE: Enter valid email address because regex is used
+  #### NOTE:
+   Enter valid email address because regex is used
    for validation refer the overview for details
   
 - Optionally, set a new password and mailbox capacity.
