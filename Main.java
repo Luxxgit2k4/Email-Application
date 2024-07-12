@@ -1,6 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 public class Main {
     public static void main(String[] args) {
         Scanner koomar = new Scanner(System.in);
@@ -9,45 +11,36 @@ public class Main {
         while (true) {
             System.out.print("Enter your first name: ");
             firstName = koomar.nextLine();
-            if (checkforNumber(firstName)) {
-                System.out.println("Warning: Name should not contain numbers. Please enter again.");
+            if (checkforNumber(firstName)) { // calling the method from boolean validation for firstname
+                System.out.println("Warning!! : Name should not contain number\n Please enter again.");
             } else {
                 break;
             }
         }
-
         // Enter the worker's last name
         while (true) {
             System.out.print("Enter your last name: ");
             lastName = koomar.nextLine();
-            if (checkforNumber(lastName)) {
-                System.out.println("Warning: Name should not contain numbers. Please enter again.");
+            if (checkforNumber(lastName)) {// calling the method from boolean validation for lastname
+                System.out.println("Warning!! : Name should not contain number\n Please enter again.");
             } else {
                 break;
             }
         }
-
         // Create an Email object with first and last names
         Email obj1 = new Email(firstName, lastName);
-
-        /* Enter the worker's alternate email address with @ in it
-        otherwise it returns invalid format and prints null in the
-        ALTERNATE EMAIL when the printinfo() method is called */
-
-        System.out.print("Enter an alternate email address: ");
-        String alternateEmail = koomar.nextLine();
-        obj1.setAlternateemail(alternateEmail);
-
         // obj1.setChangepassword(""); //Use this to set a new password and print it
         // obj1.getBoxCapacity(); //Use this to set a new mail box capacity
         //System.out.println("Alternate Email is " +obj1.getAlternateemail());
 
         obj1.printinfo(); //calling the printinfo method to display the worker's details
     }
-    private static boolean checkforNumber(String str) {
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
+    /* Boolean validation for checking the presence of number
+    in firstname and lastname*/
+    private static boolean checkforNumber(String str) { //creates a string named str for the
+        for (char c : str.toCharArray()) { // converting the string str into array
+            if (Character.isDigit(c)) { //looping through the converted array to check presence of number
+                return true; // if true it goes to the while loop
             }
         }
         return false;
@@ -86,10 +79,12 @@ class Email {
         /* Printing the worker's email with department and company address
         Note: The email printed here should consist of lowercase letters
          */
-        email = firstname.toLowerCase(Locale.ROOT) + "." + lastname.toLowerCase() + "@" + department + "." + companysite;
+        email = firstname.toLowerCase(Locale.ROOT) + lastname.toLowerCase() + "." + department + "@" + companysite;
         System.out.println("Your email is " + email);
-    }
 
+        // calling the method to input alternateemail and check the validity using regex
+        setAlternateemail();
+    }
     private String setDepartment() {
 
         // Displaying the available departments
@@ -111,12 +106,14 @@ class Email {
                 case 5:
                     return "";
                 default:
-                    return "Unexpected input"; // Default case to handle unexpected input
+                    System.out.println("INVALID INPUT!\nDepartment code doesn't exist");// Default case to handle unexpected input
+                    continue; // Continues to the loop if the input given increases
             }
         } catch (InputMismatchException e) {
-            System.out.println(" INVALID INPUT !! Enter a number");
-            bupd.next();
+            System.out.println("Error!! : Enter a number"); //checks for string input exception
+            bupd.next(); //discards the input if string is given
         }
+
         }
     }
     //Method to generate a random password
@@ -136,11 +133,25 @@ class Email {
     public void setBoxCapacity(int capacity){ // Set method to change mail box capacity
         this.boxCapacity = capacity;
     }
-    public void setAlternateemail(String altemail) {// Set method to have a alternate email
-        if (altemail.contains("@")) { // The entered alternate email should consist of @ in it.
-            this.alternateEmail = altemail;
-        } else {
-            System.out.println("Invalid format");
+    public void setAlternateemail() { // Set method to have an alternate email
+        // Using regex to validate email
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        Scanner luxx = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter an alternate email address: ");
+            String altemail = luxx.nextLine();
+            // Define the regex pattern for email validation
+            Pattern pattern = Pattern.compile(regexPattern);
+            Matcher matcher = pattern.matcher(altemail);
+            if (matcher.matches()) { // Check if the alternate email matches the regex pattern
+                this.alternateEmail = altemail;
+                break; // Exit the loop if the email format is valid
+            } else if (altemail == "") { // This is used if you dont want to give an alternate mail
+                System.out.println("null");
+                break; // Exit the loop and prints null when printinfo() is called
+            } else {
+                System.out.println("Invalid email format. Please enter a valid email address.");
+            }
         }
     }
     public void setChangepassword(String passwd){ //Set method to change the password
