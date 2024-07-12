@@ -17,10 +17,11 @@
            * Dot isn’t allowed at the start and end of the local part.
            * Consecutive dots aren’t allowed.
            * For the local part, a maximum of 64 characters are allowed
-
-              #### If you don't want an alternate email simply press enter
-               hence it prints alternate email as `null`
    ```
+```
+  If you don't want an alternate email simply press enter
+               hence it prints alternate email as `null`
+```
            
    
   #### If you don't want an alternate email simply press enter hence it prints alternate email as `null`
