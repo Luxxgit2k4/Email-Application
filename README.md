@@ -12,15 +12,15 @@
    #### Regex is used for strict email validation so read the following guidelnes before entering alternate email:
 
    ```
-           * Numeric values from 0 to 9 are allowed
-           * Both uppercase and lowercase letters from a to z are allowed.
-           * Allowed are underscore “_”, hyphen “-“, and dot “.”
-           * Dot isn’t allowed at the start and end of the local part.
-           * Consecutive dots aren’t allowed.
-           * For the local part, a maximum of 64 characters are allowed
+   * Numeric values from 0 to 9 are allowed
+   * Both uppercase and lowercase letters from a to z are allowed.
+   * Allowed are underscore “_”, hyphen “-“, and dot “.”
+   * Dot isn’t allowed at the start and end of the local part.
+   * Consecutive dots aren’t allowed.
+   * For the local part, a maximum of 64 characters are allowed
    ```
 ```
-  If you don't want an alternate email simply press enter
+If you don't want an alternate email simply press enter
                hence it prints alternate email as `null`
 ```
 
