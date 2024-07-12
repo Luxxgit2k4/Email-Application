@@ -1,16 +1,31 @@
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner koomar = new Scanner(System.in);
-
+        String firstName, lastName;
         // Enter the worker's first name
-        System.out.print("Enter your first name: ");
-        String firstName = koomar.nextLine();//nextline takes string as input
+        while (true) {
+            System.out.print("Enter your first name: ");
+            firstName = koomar.nextLine();
+            if (checkforNumber(firstName)) {
+                System.out.println("Warning: Name should not contain numbers. Please enter again.");
+            } else {
+                break;
+            }
+        }
 
         // Enter the worker's last name
-        System.out.print("Enter your last name: ");
-        String lastName = koomar.nextLine();
+        while (true) {
+            System.out.print("Enter your last name: ");
+            lastName = koomar.nextLine();
+            if (checkforNumber(lastName)) {
+                System.out.println("Warning: Name should not contain numbers. Please enter again.");
+            } else {
+                break;
+            }
+        }
 
         // Create an Email object with first and last names
         Email obj1 = new Email(firstName, lastName);
@@ -28,6 +43,14 @@ public class Main {
         //System.out.println("Alternate Email is " +obj1.getAlternateemail());
 
         obj1.printinfo(); //calling the printinfo method to display the worker's details
+    }
+    private static boolean checkforNumber(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 class Email {
@@ -52,7 +75,7 @@ class Email {
         for a none department */
         if (this.department == "") {
             System.out.println("Email not created......exiting");
-         System.exit(0);
+            System.exit(0);
         }
         System.out.println("Department: " + this.department);
 
@@ -70,27 +93,32 @@ class Email {
     private String setDepartment() {
 
         // Displaying the available departments
-        System.out.println("New worker: " + firstname + " " + lastname + "\nSELECT YOUR DEPARTMENT\n1 Manufacturing\n2 Production\n3 Sales\n4 Inspection\n5 None");
-
-        /* Taking user input for desired department and using switch case to display it */
         Scanner bupd = new Scanner(System.in);
-        int choice = bupd.nextInt();
-        switch (choice) {
-            case 1:
-                return "Manufacturing";
-            case 2:
-                return "Production";
-            case 3:
-                return "Sales";
-            case 4:
-                return "Inspection";
-            case 5:
-                return "";
-            default:
-                return "Unexpected input"; // Default case to handle unexpected input
+        while (true) {
+            System.out.println("New worker: " + firstname + " " + lastname + "\nSELECT YOUR DEPARTMENT\n1 Manufacturing\n2 Production\n3 Sales\n4 Inspection\n5 None");
+        /* Taking user input for desired department and using switch case to display it */
+        try {
+            int choice = bupd.nextInt();
+            switch (choice) {
+                case 1:
+                    return "Manufacturing";
+                case 2:
+                    return "Production";
+                case 3:
+                    return "Sales";
+                case 4:
+                    return "Inspection";
+                case 5:
+                    return "";
+                default:
+                    return "Unexpected input"; // Default case to handle unexpected input
+            }
+        } catch (InputMismatchException e) {
+            System.out.println(" INVALID INPUT !! Enter a number");
+            bupd.next();
+        }
         }
     }
-
     //Method to generate a random password
     private String generatePassword(int length) {
         String setPassword = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
