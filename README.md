@@ -10,14 +10,17 @@
 #### 3. Enter the worker's alternate email address:
    #### Regex is used to validate the email so read the following guidelnes for the email validation
 
-           ``` 
+   ```
            * Numeric values from 0 to 9 are allowed
            * Both uppercase and lowercase letters from a to z are allowed.
            * Allowed are underscore “_”, hyphen “-“, and dot “.”
            * Dot isn’t allowed at the start and end of the local part.
            * Consecutive dots aren’t allowed.
-           * For the local part, a maximum of 64 characters are allowed 
-           ```
+           * For the local part, a maximum of 64 characters are allowed
+
+              #### If you don't want an alternate email simply press enter
+               hence it prints alternate email as `null`
+   ```
            
    
   #### If you don't want an alternate email simply press enter hence it prints alternate email as `null`
@@ -53,7 +56,9 @@ java Main
 - Enter the worker's first name and last name.
 - Select a department from the available options.
 - Enter the worker's alternate email address
-  NOTE: Enter valid email address because regex is used
+  
+
+  #### NOTE: Enter valid email address because regex is used
    for validation refer the overview for details
   
 - Optionally, set a new password and mailbox capacity.
