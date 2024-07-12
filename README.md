@@ -8,7 +8,8 @@
 #### 1. Generate an email in the format `firstnamelastname.department@company.com` with the worker's username given as an input.
 #### 2. Determine the department of the worker and exit the program if it is none.
 #### 3. Enter the worker's alternate email address:
-   #### Regex is used to validate the email so read the following guidelnes for the email validation
+
+   #### Regex is used for strict email validation so read the following guidelnes before entering alternate email:
 
    ```
            * Numeric values from 0 to 9 are allowed
@@ -22,9 +23,6 @@
   If you don't want an alternate email simply press enter
                hence it prints alternate email as `null`
 ```
-           
-   
-  #### If you don't want an alternate email simply press enter hence it prints alternate email as `null`
 
 #### 5. Generate a random password
 #### 6. Have get and set methods to change and display the alternate email, password and mailbox capacity if necessary
